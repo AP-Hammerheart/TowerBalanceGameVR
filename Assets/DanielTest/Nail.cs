@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 
@@ -68,12 +69,19 @@ public class Nail : MonoBehaviour
 			Debug.Log("Gonna stick this nail to " + other.gameObject.name);
 			//var joint = sourceObject.gameObject.AddComponent<FixedJoint>();
 			//joint.connectedBody = other.attachedRigidbody;
-			//joint.breakForce = breakForce;
-			//joint.breakTorque = breakTorque;
-
 			var joint = sourceObject.gameObject.AddComponent<HingeJoint>();
 			joint.connectedBody = other.attachedRigidbody;
 			joint.anchor = sourceObject.transform.InverseTransformPoint(transform.position - transform.up * overlapOffset);
+
+			joint.breakForce = breakForce;
+			joint.breakTorque = breakTorque;
+
+			breakListener = sourceObject.gameObject.AddComponent<JointBreakListener>();
+			breakListener.JointBreak += Break;
+		}
+		else
+		{
+			Break();
 		}
 	}
 
@@ -83,6 +91,49 @@ public class Nail : MonoBehaviour
 		{
 			Hit();
 		}
+		if (Input.GetKeyDown(KeyCode.B))
+		{
+			Break();
+		}
+	}
+
+	bool isBreaking = false;
+	private JointBreakListener breakListener;
+
+	public void Break()
+	{
+		if (!isBreaking)
+		{
+			if (breakListener != null)
+			{
+				breakListener.JointBreak -= Break;
+				breakListener = null;
+			}
+
+			isBreaking = true;
+			StartCoroutine(BreakSequence());
+		}
+	}
+
+	IEnumerator BreakSequence()
+	{
+		var vel = transform.up * UnityEngine.Random.Range(2f, 5f)
+			+ transform.right * UnityEngine.Random.Range(-1f, 1f)
+			+ transform.forward * UnityEngine.Random.Range(-1f, 1f);
+
+		var rvel = UnityEngine.Random.onUnitSphere * 1900;
+
+		transform.SetParent(null);
+
+		for (float t = 0; t < 3f; t += Time.deltaTime)
+		{
+			yield return null;
+			vel += Vector3.down * 15f * Time.deltaTime;
+			transform.position += vel * Time.deltaTime;
+			transform.rotation *= Quaternion.Euler(rvel * Time.deltaTime);
+		}
+
+		Destroy(this.gameObject);
 	}
 
 	public void DestroyJoint()

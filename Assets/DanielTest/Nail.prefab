@@ -129,8 +129,8 @@ MonoBehaviour:
   startOffset: -0.04
   overlapOffset: 0
   overlapRadius: 0.01
-  breakForce: 800
-  breakTorque: 800
+  breakForce: 400
+  breakTorque: 400
 --- !u!1 &9078626322345930529
 GameObject:
   m_ObjectHideFlags: 0
