@@ -6,6 +6,7 @@ public class Nail : MonoBehaviour
 {
 	public int numberOfHits = 3;
 	public float hitMove = 0f;
+	public float startOffset = 0.1f;
 	public float overlapOffset = 0.1f;
 	public float overlapRadius = 0.1f;
 	public float breakForce = 1000;
@@ -13,6 +14,21 @@ public class Nail : MonoBehaviour
 
 	Rigidbody sourceObject;
 	int hitCount = 0;
+
+	private void Start()
+	{
+		if (sourceObject == null)
+		{
+			var colliders = Physics.OverlapSphere(transform.position - transform.up * startOffset, overlapRadius);
+			var body = colliders.Select(c => c.attachedRigidbody).FirstOrDefault(b => b != null);
+			if (body != null)
+			{
+				AttachToObject(body);
+				hitCount = 100;
+				StickNailToSomething();
+			}
+		}
+	}
 
 	public void AttachToObject(Rigidbody sourceObject)
 	{
@@ -36,6 +52,9 @@ public class Nail : MonoBehaviour
 
 	void OnDrawGizmosSelected()
 	{
+		Gizmos.color = Color.green;
+		Gizmos.DrawWireSphere(transform.position - transform.up * startOffset, overlapRadius);
+		Gizmos.color = Color.red;
 		Gizmos.DrawWireSphere(transform.position - transform.up * overlapOffset, overlapRadius);
 	}
 

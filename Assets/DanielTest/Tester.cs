@@ -97,6 +97,23 @@ public class Tester : MonoBehaviour
 			}
 		}
 
+		if (Input.GetKeyDown(KeyCode.V))
+		{
+			var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+			Debug.Log("Ray " + ray);
+
+			if (Physics.Raycast(ray, out var hit))
+			{
+				if (hit.rigidbody != null)
+				{
+					var nail = Instantiate(nailPrefab, hit.point,
+						Quaternion.LookRotation(Vector3.Cross(-ray.direction, UnityEngine.Random.onUnitSphere), -ray.direction));
+
+					nail.AttachToObject(hit.rigidbody);
+				}
+			}
+		}
+
 		if (Input.GetKeyDown(KeyCode.R))
 		{
 			Instantiate(props[UnityEngine.Random.Range(0, props.Count)], transform.position, UnityEngine.Random.rotation);
