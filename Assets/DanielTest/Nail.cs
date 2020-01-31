@@ -66,11 +66,14 @@ public class Nail : MonoBehaviour
 		if (other != null)
 		{
 			Debug.Log("Gonna stick this nail to " + other.gameObject.name);
-			var joint = sourceObject.gameObject.AddComponent<FixedJoint>();
-			joint.connectedBody = other.attachedRigidbody;
+			//var joint = sourceObject.gameObject.AddComponent<FixedJoint>();
+			//joint.connectedBody = other.attachedRigidbody;
+			//joint.breakForce = breakForce;
+			//joint.breakTorque = breakTorque;
 
-			joint.breakForce = breakForce;
-			joint.breakTorque = breakTorque;
+			var joint = sourceObject.gameObject.AddComponent<HingeJoint>();
+			joint.connectedBody = other.attachedRigidbody;
+			joint.anchor = sourceObject.transform.InverseTransformPoint(transform.position - transform.up * overlapOffset);
 		}
 	}
 
