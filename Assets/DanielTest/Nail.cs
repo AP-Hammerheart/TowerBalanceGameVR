@@ -62,7 +62,7 @@ public class Nail : MonoBehaviour
 	private void StickNailToSomething()
 	{
 		var colliders = Physics.OverlapSphere(transform.position - transform.up * overlapOffset, overlapRadius);
-		var other = colliders.FirstOrDefault(c => c.attachedRigidbody != sourceObject);
+		var other = colliders.FirstOrDefault(c => c.attachedRigidbody != null && c.attachedRigidbody != sourceObject);
 
 		if (other != null)
 		{
