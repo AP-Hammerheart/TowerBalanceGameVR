@@ -102,8 +102,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6938119287294083099}
+  - component: {fileID: 1844969865}
+  - component: {fileID: 248112691}
   m_Layer: 0
-  m_Name: Cannon
+  m_Name: CannonPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -118,12 +120,103 @@ Transform:
   m_GameObject: {fileID: 6938119287294083096}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.1765304, y: 0.1373964, z: -1.1003065}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.66515, y: 0.66515, z: 0.66515}
   m_Children:
   - {fileID: 6938119285713971437}
   - {fileID: 3185664060497902552}
+  - {fileID: 1799637404454320672}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1844969865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6938119287294083096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d416c8ef316d5043bf2751d8e17ad09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  v: 1
+  target: {fileID: 0}
+  targetRandom: {fileID: 0}
+  targetRandom2: {x: 0, y: 0, z: 0}
+  OriginPoint: {fileID: 1799637404454320672}
+  t: 3
+  waitTime: 8
+  x_randomise: 20
+  y_randomise: 20
+  z_randomise: 20
+  prefabs:
+  - {fileID: 880506304112777230, guid: fe2ff0add26ca4f4994aca1293686c2b, type: 3}
+  torque: 400
+  ToolCannon: 1
+  probabilityToMiss: 30
+  explosion: {fileID: 1121192042590650, guid: c2ce3d1ab5cabd94bb2356199e13ac5a, type: 3}
+--- !u!114 &248112691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6938119287294083096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d416c8ef316d5043bf2751d8e17ad09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  v: 1
+  target: {fileID: 0}
+  targetRandom: {fileID: 0}
+  targetRandom2: {x: 0, y: 0, z: 0}
+  OriginPoint: {fileID: 1799637404454320672}
+  t: 3
+  waitTime: 4
+  x_randomise: 20
+  y_randomise: 20
+  z_randomise: 20
+  prefabs:
+  - {fileID: 14577403226666329, guid: 09ce11746bbfdb74da42bc6f4d759fe3, type: 3}
+  - {fileID: 4755335977703689570, guid: c4e938c7d464c5a4c844d8e31b0f880b, type: 3}
+  - {fileID: 2258680899264580205, guid: 52efb819c20b1bd4fbdd3041fe06d2b5, type: 3}
+  - {fileID: 1155310031270405027, guid: 80f1884346e750148bb04c29cf85be9f, type: 3}
+  - {fileID: 121266073689714677, guid: d17556f06e3e8dc44b3c8d40ab7ba1c4, type: 3}
+  torque: 400
+  ToolCannon: 0
+  probabilityToMiss: 30
+  explosion: {fileID: 1121192042590650, guid: c2ce3d1ab5cabd94bb2356199e13ac5a, type: 3}
+--- !u!1 &7730704945439402059
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1799637404454320672}
+  m_Layer: 0
+  m_Name: ShootPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1799637404454320672
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7730704945439402059}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.76, y: 3.08, z: 0.435}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6938119287294083099}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &6938119286474065098
 PrefabInstance:

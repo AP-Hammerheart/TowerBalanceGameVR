@@ -1,114 +1,41 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Valve.VR;
 
-
-public class HandInteractionScript : MonoBehaviour
+public class HandInteractionScript : HandInteractionScriptBase
 {
-    //public BoxCollider collider;
-    //public SteamVR_TrackedObject trackObj;
-    //private GameObject heldItem;
-    //private GameObject touchedItem;
+	public SteamVR_Action_Boolean grabAction;
+	public SteamVR_Action_Boolean useAction;
+	private SteamVR_Behaviour_Pose pose;
 
-    public SteamVR_Action_Boolean grabAction;
-    private SteamVR_Behaviour_Pose pose;
-    private FixedJoint joint;
-    private Interactable currentInteractable;
-    public List<Interactable> contactInteractables = new List<Interactable>();
+	public override void Awake()
+	{
+		pose = GetComponent<SteamVR_Behaviour_Pose>();
+		base.Awake();
+	}
 
-    private void Awake()
-    {
-        //trackObj = GetComponent<SteamVR_TrackedObject>();
-        pose = GetComponent<SteamVR_Behaviour_Pose>();
-        joint = GetComponent<FixedJoint>();
-        //Debug.Log(pose);
-        //Debug.Log(joint);
-    }
+	public override void CheckInput()
+	{
+		if (grabAction.GetStateDown(pose.inputSource))
+		{
+			Grab();
+		}
+		if (grabAction.GetStateUp(pose.inputSource))
+		{
+			Release();
+		}
+		if (useAction != null && useAction.GetStateDown(pose.inputSource))
+		{
+			Use();
+		}
+	}
 
-    void Update()
-    {
-        CheckInput();
-    }
+	public override Vector3 GetAngularVelocity()
+	{
+		return pose.GetAngularVelocity();
+	}
 
-    void CheckInput()
-    {
-        if (grabAction.GetStateDown(pose.inputSource))
-        {
-            Grab();
-        }        
-        if (grabAction.GetStateUp(pose.inputSource))
-        {
-            Release();
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Interactable"))
-        {
-            contactInteractables.Add(other.gameObject.GetComponent<Interactable>());
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Interactable"))
-        {
-            contactInteractables.Remove(other.gameObject.GetComponent<Interactable>());
-        }
-    }
-
-    public void Grab()
-    {
-        currentInteractable = GetNearestInteractable();
-
-        if (!currentInteractable)
-            return;
-
-        if (currentInteractable.activeHand)
-            currentInteractable.activeHand.Release();
-
-        currentInteractable.transform.position = transform.position;
-
-        Rigidbody targetBody = currentInteractable.GetComponent<Rigidbody>();
-        joint.connectedBody = targetBody;
-
-        currentInteractable.activeHand = this;
-    }
-
-    public void Release()
-    {
-        if (!currentInteractable)
-            return;
-
-        Rigidbody targetBody = currentInteractable.GetComponent<Rigidbody>();
-        targetBody.velocity = pose.GetVelocity();
-        targetBody.angularVelocity = pose.GetAngularVelocity();
-
-        joint.connectedBody = null;
-        currentInteractable.activeHand = null;
-        currentInteractable = null;
-
-    }
-
-    private Interactable GetNearestInteractable()
-    {
-        Interactable nearest = null;
-        float minDistance = float.MaxValue;
-        float distance = 0.0f;
-
-        foreach (Interactable inc in contactInteractables)
-        {
-            distance = (inc.transform.position - transform.position).sqrMagnitude;
-
-            if(distance < minDistance)
-            {
-                minDistance = distance;
-                nearest = inc;
-            }
-        }
-
-        return nearest;
-    }
+	public override Vector3 GetVelocity()
+	{
+		return pose.GetVelocity();
+	}
 }

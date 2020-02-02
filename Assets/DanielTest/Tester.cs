@@ -16,6 +16,9 @@ public class Tester : MonoBehaviour
 	private SpringJoint grabbedJoint;
 	private Vector3 currentRotation;
 
+	public FakeHand hand;
+	public bool useHand;
+
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -30,7 +33,7 @@ public class Tester : MonoBehaviour
 			var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			Debug.Log("Ray " + ray);
 
-			if (Physics.Raycast(ray, out var hit))
+			if (Physics.Raycast(ray, out var hit, 100f, 0x7fffffff, QueryTriggerInteraction.Ignore))
 			{
 				if (hit.rigidbody != null)
 				{
@@ -124,15 +127,31 @@ public class Tester : MonoBehaviour
 
 	private void FixedUpdate()
 	{
+		hand.transform.rotation = Camera.main.transform.rotation;
+
 		if (grabbedObject != null)
 		{
 			var grabPos = grabbedObject.transform.TransformPoint(grabbeObjectLocal);
 			var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			var targetPos = ray.origin + ray.direction * grabbedDistance;
 
-			var toTarget = (targetPos - grabPos);
-			grabbedObject.AddForceAtPosition(mouseStiffness * toTarget - grabbedObject.velocity * mouseDamping, grabPos, ForceMode.Acceleration);
-			grabbedObject.AddTorque(-grabbedObject.angularVelocity * 0.5f, ForceMode.Acceleration);
+			hand.GetComponent<Rigidbody>().position = targetPos;
+
+			if (!useHand)
+			{
+				var toTarget = (targetPos - grabPos);
+				grabbedObject.AddForceAtPosition(mouseStiffness * toTarget - grabbedObject.velocity * mouseDamping, grabPos, ForceMode.Acceleration);
+				grabbedObject.AddTorque(-grabbedObject.angularVelocity * 0.5f, ForceMode.Acceleration);
+			}
+		}
+		else
+		{
+			var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+			if (Physics.Raycast(ray, out var hit, 100f, 0x7fffffff, QueryTriggerInteraction.Ignore))
+			{
+				hand.GetComponent<Rigidbody>().position = hit.point;
+			}
 		}
 	}
 
@@ -142,10 +161,19 @@ public class Tester : MonoBehaviour
 		grabPosition = hit.point;
 		grabbedObject = rigidbody;
 		grabbeObjectLocal = rigidbody.transform.InverseTransformPoint(hit.point);
+
+		if (useHand)
+		{
+			hand.Grab();
+		}
 	}
 
 	private void Release()
 	{
 		grabbedObject = null;
+		if (useHand)
+		{
+			hand.Release();
+		}
 	}
 }

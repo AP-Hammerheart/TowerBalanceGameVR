@@ -1,0 +1,299 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ed2e5fd45eb404418da4e257824a046, type: 3}
+  m_Name: AkWwiseProjectData
+  m_EditorClassIdentifier: 
+  AcousticTextureWwu:
+  - PhysicalPath: Virtual Acoustics\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    guid: 9677ea48fad10b469bf7dd3956ecad04
+    GuidInternal: 
+    m_lastTime: -8586210525114775808
+    List: []
+  AuxBusWwu:
+  - PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    guid: bb0e7746758983419338eec9d41eb415
+    GuidInternal: 
+    m_lastTime: -8586209544810109111
+    List: []
+  BankWwu:
+  - PhysicalPath: SoundBanks\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    guid: 772b7b7e0489b24fa01caa53489cf09e
+    GuidInternal: 
+    m_lastTime: -8586209549709715664
+    List:
+    - name: Main
+      guid: c92193d8ee2fdd44af202fcddfd9dd8e
+      id: 3161908922
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Main
+        ObjectType: 7
+      Path: Default Work Unit\Main
+  EventWwu:
+  - PhysicalPath: Events\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    guid: 68a5bee01599ab44ba56e97c9f4c459b
+    GuidInternal: 
+    m_lastTime: -8586209549794633222
+    List:
+    - name: Alarm
+      guid: 16d942dbdd87c344b472d5fb0540136b
+      id: 855317084
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Alarm
+        ObjectType: 3
+      Path: Default Work Unit\Alarm
+      maxAttenuation: 0
+      maxDuration: 0.919081
+      minDuration: 0.919081
+    - name: BreakWood
+      guid: aa88369ec2997e479ecf832763dfa6a3
+      id: 3932591721
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: BreakWood
+        ObjectType: 3
+      Path: Default Work Unit\BreakWood
+      maxAttenuation: 0
+      maxDuration: 1.059704
+      minDuration: 0.768615
+    - name: Canon_Fire
+      guid: f1d46f7d39965b4a9e6dc16f7bd5c6bb
+      id: 104911893
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Canon_Fire
+        ObjectType: 3
+      Path: Default Work Unit\Canon_Fire
+      maxAttenuation: 0
+      maxDuration: 2.312094
+      minDuration: 1.877366
+    - name: Destroy_Tower
+      guid: df5772bcc21c6b429a0e2ebda891e79b
+      id: 1173636399
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Destroy_Tower
+        ObjectType: 3
+      Path: Default Work Unit\Destroy_Tower
+      maxAttenuation: 0
+      maxDuration: 6.605793
+      minDuration: 6.605793
+    - name: FlyingObject
+      guid: 58715a353c12fb4a8954cdc919a203a0
+      id: 2060669393
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: FlyingObject
+        ObjectType: 3
+      Path: Default Work Unit\FlyingObject
+      maxAttenuation: 0
+      maxDuration: 19.102623
+      minDuration: 13.507595
+    - name: MetalImpact
+      guid: 5c8c13d4bd0eec43ad0f48fcfa167864
+      id: 3121599344
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: MetalImpact
+        ObjectType: 3
+      Path: Default Work Unit\MetalImpact
+      maxAttenuation: 0
+      maxDuration: 0.896973
+      minDuration: 0.483122
+    - name: Music
+      guid: ce78d9af1bdf734ab11ce7760c6f3cd4
+      id: 3991942870
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Music
+        ObjectType: 3
+      Path: Default Work Unit\Music
+      maxAttenuation: 0
+      maxDuration: 67.18086
+      minDuration: 67.18086
+    - name: NailGun
+      guid: d3ed4ea883ec63478823e6e9260f20e9
+      id: 2937287829
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: NailGun
+        ObjectType: 3
+      Path: Default Work Unit\NailGun
+      maxAttenuation: 0
+      maxDuration: 0.484598
+      minDuration: 0.427604
+    - name: NailHit
+      guid: 28196563b5e2f04aab0e358b23a16b5c
+      id: 3005531164
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: NailHit
+        ObjectType: 3
+      Path: Default Work Unit\NailHit
+      maxAttenuation: 0
+      maxDuration: 0.399775
+      minDuration: 0.212237
+    - name: Pickup
+      guid: 71c7943fe241a3408993eacf2f459c93
+      id: 3978245845
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Pickup
+        ObjectType: 3
+      Path: Default Work Unit\Pickup
+      maxAttenuation: 0
+      maxDuration: 0.187093
+      minDuration: 0.173098
+    - name: TowerConditionLoop
+      guid: bba5c5bdf1bcaf46be91f191f85108ca
+      id: 1578778285
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: TowerConditionLoop
+        ObjectType: 3
+      Path: Default Work Unit\TowerConditionLoop
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: WoodImpacts
+      guid: c185fa17ba104b4cb254e355b4b374b3
+      id: 4215793271
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: WoodImpacts
+        ObjectType: 3
+      Path: Default Work Unit\WoodImpacts
+      maxAttenuation: 0
+      maxDuration: 1.209405
+      minDuration: 0.693725
+  RtpcWwu:
+  - PhysicalPath: Game Parameters\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    guid: 13e6e11ee54a3240875dba98df3e4509
+    GuidInternal: 
+    m_lastTime: -8586210207350551377
+    List:
+    - name: Speed
+      guid: 55daeace33ef0e45a60cfa848633e71e
+      id: 640949982
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Speed
+        ObjectType: 13
+      Path: Default Work Unit\Speed
+    - name: SwingIntensity
+      guid: 5aa8b1b16f002f4291156027b94b0e28
+      id: 1509398076
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SwingIntensity
+        ObjectType: 13
+      Path: Default Work Unit\SwingIntensity
+    - name: TowerCondition
+      guid: f1f9ca5a474826418f4f7cf8ff24a844
+      id: 2206837187
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: TowerCondition
+        ObjectType: 13
+      Path: Default Work Unit\TowerCondition
+  StateWwu:
+  - PhysicalPath: States\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    guid: d4c4a02576c5e04a9ac900c3217f1664
+    GuidInternal: 
+    m_lastTime: -8586210525114775808
+    List: []
+  SwitchWwu:
+  - PhysicalPath: Switches\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    guid: 6f8cd2601e4366429c87e96fcb6e55b9
+    GuidInternal: 
+    m_lastTime: -8586210371294775808
+    List:
+    - name: Hammer
+      guid: bbb7190ebf8e994c926cbb4ff944d696
+      id: 703486095
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Hammer
+        ObjectType: 11
+      Path: Default Work Unit\Hammer
+      values:
+      - name: Four
+        guid: 17dd441ca338984fa43ceba191457553
+        id: 2863728729
+        PathAndIcons:
+        - ElementName: Four
+          ObjectType: 10
+      - name: Miss
+        guid: 72c031584fa0e44986a8b836b6e9c001
+        id: 3062523241
+        PathAndIcons:
+        - ElementName: Miss
+          ObjectType: 10
+      - name: One
+        guid: 91d9982f54833c46a5d6e760c2646ac7
+        id: 1064933119
+        PathAndIcons:
+        - ElementName: One
+          ObjectType: 10
+      - name: Three
+        guid: a0b68a067b514a44a96cb10605a5a08a
+        id: 912956111
+        PathAndIcons:
+        - ElementName: Three
+          ObjectType: 10
+      - name: Two
+        guid: 24c14887eadcbe44a51eb59f067be980
+        id: 678209053
+        PathAndIcons:
+        - ElementName: Two
+          ObjectType: 10
+      ValueGuids: []
+      ValueIcons: []
+      valuesInternal: []
+  TriggerWwu:
+  - PhysicalPath: Triggers\Default Work Unit.wwu
+    ParentPhysicalPath: 
+    guid: d35e18d4cc83364b8ec911da7897d3e3
+    GuidInternal: 
+    m_lastTime: -8586210525114775808
+    List: []
+  ExpandedItems:
+  - /TowerRepairGGJ2020
+  - /TowerRepairGGJ2020/Events
+  - /TowerRepairGGJ2020/Events/Default Work Unit
+  autoPopulateEnabled: 1
+  CurrentPluginConfig: 

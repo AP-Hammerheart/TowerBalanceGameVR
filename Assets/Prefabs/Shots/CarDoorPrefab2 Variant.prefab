@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &5411100266949687016
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1041501218401555087, guid: 8a56dd6221a5d55428eb5b1369601ca4,
+        type: 3}
+      propertyPath: SmallExplosion
+      value: 
+      objectReference: {fileID: 3241561394761265037, guid: 9f5e18de5ae0b1a4cacc680a86b63964,
+        type: 3}
+    - target: {fileID: 2689547081055118608, guid: 8a56dd6221a5d55428eb5b1369601ca4,
+        type: 3}
+      propertyPath: FlyingObject.WwiseObjectReference
+      value: 
+      objectReference: {fileID: 11400000, guid: 66b2487f9f9848e4d977b306b6537454,
+        type: 2}
+    - target: {fileID: 2689547081055118608, guid: 8a56dd6221a5d55428eb5b1369601ca4,
+        type: 3}
+      propertyPath: Impact.WwiseObjectReference
+      value: 
+      objectReference: {fileID: 11400000, guid: 56e731ec0586628458dc68922833f262,
+        type: 2}
+    - target: {fileID: 5416666055527105457, guid: 8a56dd6221a5d55428eb5b1369601ca4,
+        type: 3}
+      propertyPath: m_Name
+      value: CarDoorPrefab2 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 5416666055527105458, guid: 8a56dd6221a5d55428eb5b1369601ca4,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.7779274
+      objectReference: {fileID: 0}
+    - target: {fileID: 5416666055527105458, guid: 8a56dd6221a5d55428eb5b1369601ca4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5416666055527105458, guid: 8a56dd6221a5d55428eb5b1369601ca4,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.169136
+      objectReference: {fileID: 0}
+    - target: {fileID: 5416666055527105458, guid: 8a56dd6221a5d55428eb5b1369601ca4,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5416666055527105458, guid: 8a56dd6221a5d55428eb5b1369601ca4,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5416666055527105458, guid: 8a56dd6221a5d55428eb5b1369601ca4,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5416666055527105458, guid: 8a56dd6221a5d55428eb5b1369601ca4,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5416666055527105458, guid: 8a56dd6221a5d55428eb5b1369601ca4,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5416666055527105458, guid: 8a56dd6221a5d55428eb5b1369601ca4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5416666055527105458, guid: 8a56dd6221a5d55428eb5b1369601ca4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5416666055527105458, guid: 8a56dd6221a5d55428eb5b1369601ca4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5416666055527105458, guid: 8a56dd6221a5d55428eb5b1369601ca4,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5416666055527105458, guid: 8a56dd6221a5d55428eb5b1369601ca4,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5416666055527105458, guid: 8a56dd6221a5d55428eb5b1369601ca4,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8a56dd6221a5d55428eb5b1369601ca4, type: 3}

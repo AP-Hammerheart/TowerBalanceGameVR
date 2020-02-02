@@ -1,10 +1,15 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Linq;
 using UnityEngine;
 
 public class Nail : MonoBehaviour
 {
+	//SoundStuff
+	public AK.Wwise.Event Flyingnail;
+	public AK.Wwise.Event BreakEv;
+	//public AK.Wwise.Event HammerHit;
+	public AK.Wwise.Event NailStickEv;
+
 	public int numberOfHits = 3;
 	public float hitMove = 0f;
 	public float startOffset = 0.1f;
@@ -16,11 +21,22 @@ public class Nail : MonoBehaviour
 	Rigidbody sourceObject;
 	int hitCount = 0;
 
+	bool isFlying;
+	float flyingTimer;
+	Vector3 velocity;
+
+	public void Fly(Vector3 velocity)
+	{
+		isFlying = true;
+		this.velocity = velocity;
+		prevFlying = transform.position;
+	}
+
 	private void Start()
 	{
-		if (sourceObject == null)
+		if (sourceObject == null && !isFlying)
 		{
-			var colliders = Physics.OverlapSphere(transform.position - transform.up * startOffset, overlapRadius);
+			var colliders = Physics.OverlapSphere(transform.position - transform.up * startOffset * transform.lossyScale.x, overlapRadius * transform.lossyScale.x);
 			var body = colliders.Select(c => c.attachedRigidbody).FirstOrDefault(b => b != null);
 			if (body != null)
 			{
@@ -41,48 +57,63 @@ public class Nail : MonoBehaviour
 	{
 		if (hitCount < numberOfHits)
 		{
+			
+
+
+
 			hitCount++;
 			transform.position += transform.up * hitMove;
-
+			bool Stick = false;
 			if (hitCount == numberOfHits)
 			{
-				StickNailToSomething();
+
+				Stick = StickNailToSomething();
 			}
+			
 		}
 	}
 
 	void OnDrawGizmosSelected()
 	{
 		Gizmos.color = Color.green;
-		Gizmos.DrawWireSphere(transform.position - transform.up * startOffset, overlapRadius);
+		Gizmos.DrawWireSphere(transform.position - transform.up * startOffset * transform.lossyScale.x, overlapRadius * transform.lossyScale.x);
 		Gizmos.color = Color.red;
-		Gizmos.DrawWireSphere(transform.position - transform.up * overlapOffset, overlapRadius);
+		Gizmos.DrawWireSphere(transform.position - transform.up * overlapOffset * transform.lossyScale.x, overlapRadius * transform.lossyScale.x);
 	}
 
-	private void StickNailToSomething()
+	private bool StickNailToSomething()
 	{
-		var colliders = Physics.OverlapSphere(transform.position - transform.up * overlapOffset, overlapRadius);
-		var other = colliders.FirstOrDefault(c => c.attachedRigidbody != null && c.attachedRigidbody != sourceObject);
+		var colliders = Physics.OverlapSphere(transform.position - transform.up * overlapOffset * transform.lossyScale.x, overlapRadius * transform.lossyScale.x);
+		var other = colliders.FirstOrDefault(c => c.attachedRigidbody != null && c.attachedRigidbody != sourceObject && c.GetComponent<NailHitter>() == null);
+
+		NailStickEv.Post(gameObject);
 
 		if (other != null)
 		{
+
+
+			
+
+
 			Debug.Log("Gonna stick this nail to " + other.gameObject.name);
-			//var joint = sourceObject.gameObject.AddComponent<FixedJoint>();
+			var joint = sourceObject.gameObject.AddComponent<FixedJoint>();
 			//joint.connectedBody = other.attachedRigidbody;
-			var joint = sourceObject.gameObject.AddComponent<HingeJoint>();
+			//var joint = sourceObject.gameObject.AddComponent<HingeJoint>();
 			joint.connectedBody = other.attachedRigidbody;
-			joint.anchor = sourceObject.transform.InverseTransformPoint(transform.position - transform.up * overlapOffset);
+			joint.anchor = sourceObject.transform.InverseTransformPoint(transform.position - transform.up * overlapOffset * transform.lossyScale.x);
 
 			joint.breakForce = breakForce;
 			joint.breakTorque = breakTorque;
 
 			breakListener = sourceObject.gameObject.AddComponent<JointBreakListener>();
 			breakListener.JointBreak += Break;
+			return true;
 		}
 		else
 		{
-			Break();
+			//Break();
 		}
+		return false;
 	}
 
 	private void Update()
@@ -95,7 +126,55 @@ public class Nail : MonoBehaviour
 		{
 			Break();
 		}
+
+		if (isFlying)
+		{
+			flyingTimer += Time.deltaTime;
+
+			velocity += Physics.gravity * Time.deltaTime;
+			transform.position += velocity * Time.deltaTime;
+			transform.rotation = Quaternion.LookRotation(velocity.normalized) * Quaternion.Euler(-90, 0, 0);
+
+			var origin = prevFlying;
+			var vec = transform.position - prevFlying;
+			var ray = new Ray(origin, vec.normalized);
+			if (Physics.Raycast(ray, out var hit, vec.magnitude, 0x7fffffff, QueryTriggerInteraction.Ignore))
+			{
+				var body = hit.rigidbody;
+				if (body != null)
+				{
+					body.AddForce(velocity.normalized * 2f, ForceMode.Impulse);
+					transform.position = hit.point;
+					AttachToObject(body);
+
+					transform.position -= velocity.normalized * hitMove * numberOfHits;
+					StickNailToSomething();
+
+					isFlying = false;
+				}
+			}
+			else if (flyingTimer > 10f)
+			{
+				Destroy(this.gameObject);
+			}
+
+			//var colliders = Physics.OverlapSphere(transform.position - transform.up * startOffset * transform.lossyScale.x, overlapRadius * transform.lossyScale.x);
+			//var body = colliders.Select(c => c.attachedRigidbody).FirstOrDefault(b => b != null);
+			//if (body != null)
+			//{
+			//	AttachToObject(body);
+			//	isFlying = false;
+			//}
+			//else if (flyingTimer > 10f)
+			//{
+			//	Destroy(this.gameObject);
+			//}
+
+			prevFlying = transform.position;
+		}
 	}
+
+	Vector3 prevFlying;
 
 	bool isBreaking = false;
 	private JointBreakListener breakListener;
@@ -104,6 +183,11 @@ public class Nail : MonoBehaviour
 	{
 		if (!isBreaking)
 		{
+
+			//SoundStuff
+			BreakEv.Post(gameObject);
+			Flyingnail.Post(gameObject);
+
 			if (breakListener != null)
 			{
 				breakListener.JointBreak -= Break;
